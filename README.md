@@ -2,4 +2,5 @@
 
 Run Command For Sync All Providers 
 
-#php bin\console SyncTask
+`php bin\console SyncTask`
+
