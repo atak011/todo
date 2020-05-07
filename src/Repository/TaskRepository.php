@@ -33,6 +33,15 @@ class TaskRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllOrderByWeek($sort='DESC')
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.assigned_week', $sort)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function countDeveloperEffortPointRelatedWeek($developerId,$week){
         return $this->createQueryBuilder('t')
             ->where('t.assigned_developer = :developerId')

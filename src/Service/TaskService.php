@@ -42,6 +42,12 @@ class TaskService
         return $this->rep->findAssignableOrderByEffortPoint();
     }
 
+
+
+    public function findAllOrderByWeek()
+    {
+        return $this->rep->findAllOrderByWeek();
+    }
     /**
      * @return array
      */
@@ -49,6 +55,7 @@ class TaskService
     {
         return $this->rep->findAll();
     }
+
 
     /**
      * @param Task $task
