@@ -5,15 +5,21 @@ namespace App\Entity;
 
 
 use App\Interfaces\IProvider;
-use App\Service\LogService;
 use App\Traits\TaskApiCallable;
 
 class Provider1 implements IProvider
 {
     use TaskApiCallable;
 
+    /**
+     * @var string
+     */
     private $apiUrl = 'http://www.mocky.io/v2/5d47f24c330000623fa3ebfa';
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function getTasksFromAPI():array
     {
         $tasks = [];
@@ -24,6 +30,9 @@ class Provider1 implements IProvider
         return $tasks;
     }
 
+    /**
+     * @return string
+     */
     function getApiUrl(): string
     {
         return $this->apiUrl;

@@ -23,10 +23,22 @@ class TaskRepository extends ServiceEntityRepository
     //  * @return Task[] Returns an array of Task objects
     //  */
 
-    public function findAllOrderByEffortPoint($sort='DESC')
+    public function findAssignableOrderByEffortPoint($sort='DESC')
     {
         return $this->createQueryBuilder('t')
+            ->where('t.assigned_developer is NULL')
+            ->andWhere('t.assigned_week is NULL')
             ->orderBy('t.effort_point', $sort)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countDeveloperEffortPointRelatedWeek($developerId,$week){
+        return $this->createQueryBuilder('t')
+            ->where('t.assigned_developer = :developerId')
+            ->andWhere('t.assigned_week = :week')
+            ->setParameters(['developerId' => $developerId,'week'=>$week])
+            ->select('SUM(t.effort_point) as countEffortPoint')
             ->getQuery()
             ->getResult();
     }

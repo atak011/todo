@@ -14,35 +14,59 @@ class TaskService
     private $rep;
     private $entityManager;
 
-    public function __construct(TaskRepository $rep,EntityManagerInterface $entityManager){
+    /**
+     * TaskService constructor.
+     * @param TaskRepository $rep
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(TaskRepository $rep, EntityManagerInterface $entityManager)
+    {
         $this->rep = $rep;
         $this->entityManager = $entityManager;
     }
 
-    public function create(Task $task){
-       $this->entityManager->persist($task);
-       $this->entityManager->flush();
+    /**
+     * @param Task $task
+     */
+    public function create(Task $task)
+    {
+        $this->entityManager->persist($task);
+        $this->entityManager->flush();
     }
 
-    public function findAllOrderByEffortPoint(){
-        return $this->rep->findAllOrderByEffortPoint();
+    /**
+     * @return int|mixed|string
+     */
+    public function findAssignableOrderByEffortPoint()
+    {
+        return $this->rep->findAssignableOrderByEffortPoint();
     }
 
-    public function findAll():array {
+    /**
+     * @return array
+     */
+    public function findAll(): array
+    {
         return $this->rep->findAll();
     }
 
     /**
      * @param Task $task
-     * @param $developerId
+     * @param Developer $developer
+     * @param $week
      */
-    public function assignDeveloper(Task $task,Developer $developer) {
+    public function assignDeveloper(Task $task, Developer $developer,$week)
+    {
         $task->setAssignedDeveloper($developer);
+        $task->setAssignedWeek($week);
         $this->entityManager->persist($task);
         $this->entityManager->flush();
     }
 
-
+    public function countDeveloperEffortPointRelatedWeek(Developer $developer,$week)
+    {
+       return $this->rep->countDeveloperEffortPointRelatedWeek($developer->getId(),$week)[0]['countEffortPoint'];
+    }
 
 
 

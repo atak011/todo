@@ -39,6 +39,10 @@ class Developer
      */
     private $tasks;
 
+    /**
+     * @ORM\Column(type="smallint",nullable=true)
+     */
+    private $weekly_effort_point;
 
     public function __construct()
     {
@@ -115,5 +119,21 @@ class Developer
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeeklyEffortPoint()
+    {
+        return $this->weekly_effort_point;
+    }
+
+    /**
+     * @param mixed $weekly_effort_point
+     */
+    public function setWeeklyEffortPoint($weekly_effort_point): void
+    {
+        $this->weekly_effort_point = $weekly_effort_point;
     }
 }

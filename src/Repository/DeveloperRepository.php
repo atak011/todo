@@ -31,8 +31,11 @@ class DeveloperRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function countWorkingHoursOnWeek(Developer $developer,$week){
-
+    public function totalWeeklyEffortPoint(){
+        return $this->createQueryBuilder('d')
+            ->select('SUM(d.weekly_effort_point) as totalEffortPoint')
+            ->getQuery()
+            ->getResult();
     }
 
 
