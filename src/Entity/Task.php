@@ -38,6 +38,24 @@ class Task
      */
     private $assigned_developer;
 
+    /**
+     * @ORM\Column(type="smallint",nullable=true)
+     */
+    private $assigned_week;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $effort_point;
+
+    public function __construct($name,$time,$difficulty)
+    {
+        $this->name = $name;
+        $this->time = $time;
+        $this->difficulty = $difficulty;
+        $this->effort_point = $time*$difficulty;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,5 +107,37 @@ class Task
         $this->assigned_developer = $assigned_developer;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssignedWeek()
+    {
+        return $this->assigned_week;
+    }
+
+    /**
+     * @param mixed $assigned_week
+     */
+    public function setAssignedWeek($assigned_week): void
+    {
+        $this->assigned_week = $assigned_week;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEffortPoint()
+    {
+        return $this->effort_point;
+    }
+
+    /**
+     * @param mixed $effort_point
+     */
+    public function setEffortPoint($effort_point): void
+    {
+        $this->effort_point = $effort_point;
     }
 }

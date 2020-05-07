@@ -8,7 +8,7 @@ interface IProvider
 
     function getApiUrl():string ;
 
-    function syncTasksFromAPI() ;
+    function getTasksFromAPI() ;
 
 
 }

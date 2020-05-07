@@ -3,8 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Log;
+use App\Entity\Provider1;
 use App\Entity\Provider2;
-use App\Services\LogService;
+use App\Repository\DeveloperRepository;
+use App\Service\DeveloperService;
+use App\Service\LogService;
+use App\Service\TaskService;
+use App\Service\TwitterClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProviderController extends AbstractController
 {
     private $logService;
-    private $messageGenerator;
+    private $twitterClient;
 
     /**
      * @Route("/provider", name="provider")
@@ -21,32 +26,17 @@ class ProviderController extends AbstractController
 
 
 
-    public function index()
+    public function index(TaskService $taskService,DeveloperService $developerService)
     {
 
-
-//        $log = new Log('Adana','iyi',new \DateTime());
-
-//        new LogService();
-
-        return (new LogService)->create();
-
-//        return (new Provider2($this->getDoctrine()->getManager()))->getTaskFromApi();
-//        $sen = json_decode($result);
-//        foreach ($sen as $key => $result){
-//            foreach ($result as $sen => $ben){
-//                dd($ben);
-//            }
-//        }
-//        return new Response('',200);
-
-
-//        $sen = (new LogService())->create($log);
-
-        return ;
-//        return $this->render('provider/index.html.twig', [
-//            'controller_name' => 'ProviderController',
-//        ]);
+        $tasks = $taskService->findAllOrderByEffortPoint();
+        $developers = $developerService->findAllOrderByWorkPerTime();
+        dd($tasks);
+        foreach ($tasks as $task){
+            foreach ($developers as $developer){
+                // ATADIKTAN SONRA ÇIK
+            }
+        }
 
 
     }

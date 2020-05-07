@@ -22,19 +22,15 @@ class TaskRepository extends ServiceEntityRepository
     // /**
     //  * @return Task[] Returns an array of Task objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findAllOrderByEffortPoint($sort='DESC')
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('t.effort_point', $sort)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Task

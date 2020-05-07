@@ -22,19 +22,19 @@ class DeveloperRepository extends ServiceEntityRepository
     // /**
     //  * @return Developer[] Returns an array of Developer objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findAllOrderByWorkPerTime($sort='DESC')
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('d.work_per_time', $sort)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
+    public function countWorkingHoursOnWeek(Developer $developer,$week){
+
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Developer

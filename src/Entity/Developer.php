@@ -39,6 +39,7 @@ class Developer
      */
     private $tasks;
 
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
